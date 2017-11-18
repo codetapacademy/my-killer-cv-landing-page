@@ -1,3 +1,67 @@
+// Colours
+:root {
+  --color-denim: #146bb8;
+  --color-pomegranate: #f75610;
+  --color-cocoa-brown: #241c1a;
+  --color-white: #fff;
+}
+// Reset everything
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: calc(12px + (24 - 12)*((100vmin - 400px)/(800 - 400)));
+}
+
+h1, h2, h3 {
+  padding: 3rem 2rem;
+}
+
 h1 {
-  color: red;
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+  background-color: var(--color-cocoa-brown);
+  color: var(--color-white);
+}
+
+p {
+  padding: 1rem 2rem;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
+  text-indent: 3rem;
+  text-align: justify;
+  &:first-letter {
+    font-size: 2.25rem;
+    padding-right: 0.25rem;
+  }
+}
+
+header,
+.cv-bg {
+  background-color: var(--color-denim);
+  color: var(--color-white);
+}
+
+.form {
+  background-color: var(--color-pomegranate);
+  color: var(--color-white);
+}
+
+.cv-bg {
+  min-height: 30rem;
+  background-image: url(asset/image/cv-background-40.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: auto 100%;
 }
