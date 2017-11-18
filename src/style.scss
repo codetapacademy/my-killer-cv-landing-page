@@ -2,6 +2,7 @@
 :root {
   --color-denim: #146bb8;
   --color-pomegranate: #f75610;
+  --color-thunderbird: #c31421;
   --color-cocoa-brown: #241c1a;
   --color-white: #fff;
 }
@@ -64,4 +65,18 @@ header,
   background-repeat: no-repeat;
   background-position-x: center;
   background-size: auto 100%;
+}
+
+.button,
+.button__bottom {
+  background-color: var(--color-thunderbird);
+  color: var(--color-white);
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.button__bottom {
+  display: block;
 }
