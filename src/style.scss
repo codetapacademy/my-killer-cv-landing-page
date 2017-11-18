@@ -98,3 +98,26 @@ input {
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (min-width: 48rem) {
+  body {
+    display: grid;
+    grid-template-columns: 1fr 24rem 24rem 1fr;
+  }
+
+  header {
+    grid-column: 2/3;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .cv-bg {
+    grid-column: 3/4;
+  }
+
+  .form, h2, h3, p {
+    grid-column: 2/4;
+  }
+}
