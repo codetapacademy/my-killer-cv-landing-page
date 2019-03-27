@@ -7,20 +7,19 @@ import path from 'path';
 import gulpConfig from './util/config';
 import { getStaticFiles } from './util/util';
 
-const copy = ({
+const copyIcon = ({
   gulp,
   config,
   plugins,
   taskTarget
 }) => {
   const dir = config.directory;
-  const dest = path.join(taskTarget, dir.asset.replace(/\_/, ''));
+  const dest = path.join(taskTarget);
 
-  gulp.task('copy', () => {
+  gulp.task('copyIcon', () => {
     const staticFilePath = path.join(
       dir.source,
-      dir.asset,
-      gulpConfig.fileExpression.copy
+      gulpConfig.fileExpression.ico
     );
 
     return getStaticFiles({
@@ -33,4 +32,4 @@ const copy = ({
   });
 };
 
-export default copy;
+export default copyIcon;

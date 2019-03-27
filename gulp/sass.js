@@ -2,7 +2,7 @@
 
 import path from 'path';
 import autoprefixer from 'autoprefixer';
-import { printError } from './util/util';
+import { printError, fixWindows10GulpPathIssue } from './util/util';
 
 const sass = ({
   gulp,
@@ -13,14 +13,21 @@ const sass = ({
   browserSync
 }) => {
   const dir = config.directory;
-  const entry = config.entry;
-  const cssPath = [];
+  const { entry } = config;
+  let cssPath = [];
 
   if (entry.css.external) {
     cssPath.push(path.join(dir.source, entry.cssExternal));
   }
-  if (entry.css.inline) {
-    cssPath.push(path.join(dir.source, entry.cssInline));
+  if (entry.css.embed) {
+    cssPath.push(path.join(dir.source, entry.cssEmbed));
+  }
+
+  if (entry.cssModular) {
+    cssPath = [
+      `./${dir.source}/**/*.{scss,sass}`,
+      `!./${dir.source}/**/\_*.{scss,sass}`
+    ]
   }
 
   // Compile sass
@@ -58,8 +65,15 @@ const sass = ({
           grid: false
         })
       ]))
+
+      // Fix for Windows 10 and gulp acting crazy
+      .pipe(plugins.rename(file => {
+        const dest = taskTarget;
+        fixWindows10GulpPathIssue({file, dest, plugins, config})
+      }))
+
       .pipe(plugins.sourcemaps.write('./'))
-      .pipe(gulp.dest(taskTarget))
+      .pipe(gulp.dest(taskTarget.replace(/\_/, '')))
       .pipe(browserSync.stream({match: '**/*.css'}));
   });
 };
